@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "my-circle",
+    "name": "My Circle",
     "slug": "my-circle",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,9 +18,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.abba_raees.mycircle"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +33,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "8d289b70-dcfd-4e46-b079-673297f3ebc1"
+      }
+    },
+    "owner": "abba_raees"
   }
 }
