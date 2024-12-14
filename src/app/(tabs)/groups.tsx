@@ -3,6 +3,7 @@ import React from 'react'
 import { TextInput, Text } from 'react-native-paper'
 import GroupItem from '@/src/components/GroupItem'
 import FAB from '@/src/components/FAB'
+import { router } from 'expo-router'
 
 const groups = () => {
   const groups = [
@@ -36,7 +37,7 @@ const groups = () => {
 
       <FAB
         icon='plus'
-        onPress={() => {}}
+        onPress={() => {router.push('/groups/create-group')}}
       />
     </View>
   )
