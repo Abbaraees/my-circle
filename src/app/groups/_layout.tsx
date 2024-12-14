@@ -1,13 +1,25 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { Stack } from 'expo-router'
+import { SimpleLineIcons } from '@expo/vector-icons'
 
 const _layout = () => {
   return (
-    <Stack>
+    <Stack screenOptions={{headerTitleAlign: 'center'}}>
       <Stack.Screen 
         name='create-group' 
-        options={{headerTitle: 'Create a New Group', headerTitleAlign: 'center'}} />
+        options={{headerTitle: 'Create a New Group'}} 
+      />
+      <Stack.Screen 
+        name='[id]' 
+        options={{
+          headerTitle: 'Group Details',
+          headerRight: () => (
+            <SimpleLineIcons name='pencil' />
+          )
+        }}
+        
+      />
     </Stack>
   )
 }

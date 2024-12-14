@@ -11,13 +11,15 @@ type ActivityItemPropsType = {
 
 const ActivityItem = ({title, date, image, label}: ActivityItemPropsType) => {
   const theme = useTheme()
+  const colors = ['red', '#ee2aa2', 'slateblue', 'purple']
+  const selectedColor = Math.floor(Math.random() * colors.length)
   return (
-    <View style={{flexDirection: 'row', alignItems: 'center', gap: 3, backgroundColor: theme.colors.background}}>
+    <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
       {
         image 
         ? <Avatar.Image source={{uri: image}} />
         : label 
-        ? <Avatar.Text label='AM' />
+        ? <Avatar.Text label={label} style={{backgroundColor: colors[selectedColor]}}/>
         : <Avatar.Icon icon={'calendar'} />
       }
       <View style={{gap: 2}}>
@@ -30,4 +32,12 @@ const ActivityItem = ({title, date, image, label}: ActivityItemPropsType) => {
 
 export default ActivityItem
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    gap: 3,
+    padding: 4,
+    borderRadius: 8
+  }
+})

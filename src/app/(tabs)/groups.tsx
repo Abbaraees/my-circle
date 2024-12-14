@@ -28,6 +28,7 @@ const groups = () => {
               title={item.name} 
               date={item.lastInteraction} 
               image={item.image} 
+              onPress={() => router.push('/groups/1')}
             />
             )}
             contentContainerStyle={{gap: 15}}
