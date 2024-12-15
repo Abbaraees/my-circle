@@ -1,31 +1,38 @@
-import { StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { Stack, router } from 'expo-router'
+import ActivityItem from '@/src/components/ActivityItem'
+import FAB from '@/src/components/FAB'
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
-
-export default function TabTwoScreen() {
+const activities = () => {
+  const data = []
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Stack.Screen options={{title: 'Activities'}} />
+      <FlatList
+        data={Array(10).fill(NaN)}
+        renderItem={({item}) => (<ActivityItem 
+            title='Dinner with Abubakar Mahmud' 
+            date='Friday 28, Dec 2024'
+          /> )
+        }
+        contentContainerStyle={{gap: 10, marginTop: 10, paddingBottom: 20}}
+      />
+
+      <FAB
+        icon='calendar-plus'
+        onPress={() => { router.push('/activities/add-activity')}}
+      />
+
     </View>
-  );
+  )
 }
+
+export default activities
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+    flex:1,
+    paddingHorizontal: 8
+  }
+})

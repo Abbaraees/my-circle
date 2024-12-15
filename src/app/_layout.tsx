@@ -51,10 +51,11 @@ function RootLayoutNav() {
 
   return (
     <PaperProvider theme={theme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="groups" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack screenOptions={{headerShown: false}}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="groups" />
+        <Stack.Screen name="activities" />
+        <Stack.Screen name="(tabs)" />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </PaperProvider>

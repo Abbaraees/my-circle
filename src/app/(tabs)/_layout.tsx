@@ -75,7 +75,7 @@ export default function TabLayout() {
                     style={{ marginLeft: 15, marginRight: 20}}
                   />
             </Pressable>
-          )
+          ),
         }}
       />
       <Tabs.Screen
@@ -83,6 +83,16 @@ export default function TabLayout() {
         options={{
           title: 'Activities',
           tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
+          headerLeft: () => (
+            <Pressable onPress={() => router.back()}>
+              <Feather
+                    name="arrow-left"
+                    size={25}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{ marginLeft: 15, marginRight: 20}}
+                  />
+            </Pressable>
+          ),
         }}
       />
       <Tabs.Screen
