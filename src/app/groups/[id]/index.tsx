@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Stack } from 'expo-router'
+import { Stack, router } from 'expo-router'
 import ActivityItem from '@/src/components/ActivityItem'
 import FAB from '@/src/components/FAB'
 
@@ -34,7 +34,7 @@ const index = () => {
         contentContainerStyle={{gap: 10, marginTop: 10, paddingBottom: 20}}
       />
       <FAB
-        onPress={() => {}}
+        onPress={() => { router.navigate('/groups/add-member?id=1')}}
         icon='account-plus'
       />
       
