@@ -4,7 +4,7 @@ import { useLocalSearchParams } from 'expo-router/build/hooks'
 import { Stack, router } from 'expo-router'
 import { Button, Icon, TextInput, Text, IconButton } from 'react-native-paper'
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+
 
 const AddActivity = () => {
   const { groupId } = useLocalSearchParams()
@@ -54,11 +54,11 @@ const AddActivity = () => {
         <Text variant='labelLarge' style={{fontSize: 18, marginVertical: 10}}>Group/Contact Association</Text>
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
           <View style={{alignItems: 'center'}}>
-            <IconButton icon={'account'} size={100} mode='contained'/>
+            <IconButton icon={'account'} size={100} mode='contained' onPress={() => router.push('/activities/add-participant?category=Contact')}/>
             <Text style={{fontSize: 18}}>Contact</Text>
           </View>
           <View style={{alignItems: 'center'}}>
-            <IconButton icon={'account-group'} size={100} mode='contained'/>
+            <IconButton icon={'account-group'} size={100} mode='contained' onPress={() => router.push('/activities/add-participant?category=Group')}/>
             <Text style={{fontSize: 18}}>Group</Text>
           </View>
         </View>
