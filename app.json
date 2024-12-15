@@ -42,6 +42,12 @@
         "projectId": "8d289b70-dcfd-4e46-b079-673297f3ebc1"
       }
     },
-    "owner": "abba_raees"
+    "owner": "abba_raees",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8d289b70-dcfd-4e46-b079-673297f3ebc1"
+    }
   }
 }
