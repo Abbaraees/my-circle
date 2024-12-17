@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/components/useColorScheme';
 import { DefaultTheme, MD2DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { theme } from '../constants/theme';
+import { getAllGroups, getGroup, initDB } from '../data/db';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -38,6 +39,10 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
+
+  useEffect(() => {(async () => {
+    initDB()
+  })()}, [])
 
   if (!loaded) {
     return null;

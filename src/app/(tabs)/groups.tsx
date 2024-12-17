@@ -1,16 +1,25 @@
 import { FlatList, StyleSheet, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { TextInput, Text } from 'react-native-paper'
 import GroupItem from '@/src/components/GroupItem'
 import FAB from '@/src/components/FAB'
-import { router } from 'expo-router'
+import { router, useFocusEffect } from 'expo-router'
+import { Group } from '@/src/types'
+import groupsStore from '@/src/stores/GroupStore'
+
 
 const groups = () => {
-  const groups = [
-    {name: 'Family', lastInteraction: '1 day ago', image: require('@/assets/images/family-group.jpg')},
-    {name: 'Friends', lastInteraction: '4 days ago', image: require('@/assets/images/friends-group.jpg')},
-    {name: 'Work', lastInteraction: '2 days ago', image: require('@/assets/images/work-group.png')}
-  ]
+  const [groups, setGroups] = useState<Group[]>([])
+
+  useFocusEffect(() => {(async () => {
+    try {
+      const data = await groupsStore.getAllGroups()
+      setGroups(data)
+    } catch (error) {
+      
+    }
+  })()})
+
   return (
     <View style={styles.container}>
       <TextInput 
@@ -22,16 +31,16 @@ const groups = () => {
       {groups.length > 0
       ? <FlatList 
           data={groups}
-          renderItem={({item, index}) => (
+          renderItem={({item}) => (
             <GroupItem 
-              key={index} 
+              key={item.id} 
               title={item.name} 
-              date={item.lastInteraction} 
-              image={item.image} 
-              onPress={() => router.push('/groups/1')}
+              date={item.description} 
+              image={require('@/assets/images/work-group.png')} 
+              onPress={() => router.push(`/groups/${item.id}`)}
             />
             )}
-            contentContainerStyle={{gap: 15}}
+            contentContainerStyle={{gap: 10}}
         />
       : <Text variant='labelLarge' style={{textAlign: 'center'}}>No groups yet! Create one to get started.</Text>
       }

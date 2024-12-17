@@ -17,8 +17,8 @@ const GroupItem = ({title, date, image, onPress}: GroupItemPropsType) => {
         style={styles.image}
       />
       <View style={{gap: 4, marginLeft: 10}}>
-        <Text variant='headlineSmall'>{title}</Text>
-        <Text variant='bodyLarge'>Last Interaction: {date}</Text>
+        <Text variant='headlineSmall' style={{width: '90%'}}>{title}</Text>
+        {/* <Text variant='bodyLarge'>Last Interaction: {date}</Text> */}
       </View>
     </Pressable>
   )

@@ -1,19 +1,26 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Stack, router } from 'expo-router'
+import { FlatList, StyleSheet, Text, ToastAndroid, View } from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { Stack, router, useFocusEffect, useLocalSearchParams } from 'expo-router'
 import ActivityItem from '@/src/components/ActivityItem'
 import FAB from '@/src/components/FAB'
+import { Member } from '@/src/types'
+import membersStore from '@/src/stores/MembersStore'
 
 const index = () => {
-  const members = [
-    {'name': 'Muhammad Lawal', nickname: '@raees', image: ''},
-    {'name': 'Umar Salisu', nickname: '@salkalee', image: ''},
-    {'name': 'Abubakar Yusuf', nickname: '@abuyusuf', image: ''},
-    {'name': 'Ibrahim Mustapha', nickname: '@inrahim', image: ''},
-    {'name': 'Abdulmumini Bashir', nickname: '@abba', image: ''}
-  ]
-  members[0].name.split(' ')[0]
-  const renderMember = (member) => {
+  const [members, setMembers] = useState<Member[]>([])
+  const { id } = useLocalSearchParams()
+  const idInt = typeof id == 'string' ? parseInt(id) : parseInt(id[0])
+
+  useFocusEffect(useCallback(() => {(async () => {
+    try {
+      const data = await membersStore.getMembersByGroup(idInt)
+      setMembers(data)
+    } catch (error) {
+      ToastAndroid.show("Failed to fetch members", ToastAndroid.SHORT)
+    }
+  })()}, []))
+
+  const renderMember = (member: Member) => {
     const [fname, lname] = member.name.split(' ')
 
     return (
@@ -21,10 +28,10 @@ const index = () => {
         title={member.name} 
         date={member.nickname}
         label={fname[0] + lname[0]}
-  
       />
     )
   }
+
   return (
     <View style={styles.container}>
       <Stack.Screen options={{title: 'Members'}} />
