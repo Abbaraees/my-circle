@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, ToastAndroid, View } from 'react-native'
+import { FlatList, Pressable, StyleSheet, Text, ToastAndroid, View } from 'react-native'
 import React, { useCallback, useState } from 'react'
 import { Stack, router, useFocusEffect, useLocalSearchParams } from 'expo-router'
 import ActivityItem from '@/src/components/ActivityItem'
@@ -24,11 +24,13 @@ const index = () => {
     const [fname, lname] = member.name.split(' ')
 
     return (
-      <ActivityItem 
-        title={member.name} 
-        date={member.nickname}
-        label={fname[0] + lname[0]}
-      />
+      <Pressable onPress={() => router.push(`/groups/view-member-details?memberId=${member.id}`)}>
+        <ActivityItem 
+          title={member.name} 
+          date={member.nickname}
+          label={fname[0] + lname[0]}
+        />
+      </Pressable>
     )
   }
 

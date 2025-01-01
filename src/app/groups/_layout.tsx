@@ -13,10 +13,7 @@ const _layout = () => {
       <Stack.Screen 
         name='[id]' 
         options={{
-          headerTitle: 'Group Details',
-          headerRight: () => (
-            <SimpleLineIcons name='pencil' />
-          )
+          headerShown: false
         }}
         
       />

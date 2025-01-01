@@ -1,13 +1,9 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { withLayoutContext } from 'expo-router'
-import { View, Text } from 'react-native'
+import { Stack } from 'expo-router'
 
-
-const TopTab = withLayoutContext(createMaterialTopTabNavigator().Navigator)
 
 const _layout = () => {
   return (
-    <TopTab />
+    <Stack />
   )
 }
 

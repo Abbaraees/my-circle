@@ -10,5 +10,5 @@ export type Member = {
     nickname: string,
     phone: string,
     address: string,
-    note: string
+    notes: string
 }

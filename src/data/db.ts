@@ -59,6 +59,21 @@ export const getGroupMembers = async (group_id: number) => {
   return await db.getAllAsync<Member>(`SELECT * FROM members WHERE group_id=${group_id}`)
 }
 
+export const getMember = async (id: number) => {
+  return await db.getFirstAsync<Member>(`SELECT * FROM members WHERE id=${id}`)
+}
+
+export const updateMember = async (id: number, name: string, nickname: string, phone: string, notes: string, address: string) => {
+  const statement = db.prepareAsync('UPDATE members SET name = $name, nickname = $nickname, phone = $phone, notes = $notes, address = $address WHERE id = $id;')
+  try {
+    let result = (await statement).executeAsync({ $id: id, $name: name, $nickname: nickname, $phone: phone, $notes: notes, $address: address })
+    return result
+  } 
+  finally {
+    (await statement).finalizeAsync()
+  }
+}
+
 
 
 export default db

@@ -7,9 +7,10 @@ import AddMemberUIStore from '@/src/stores/AddMemberUIStore'
 import { observer } from 'mobx-react'
 
 const AddMember = () => {
-  const { id } = useLocalSearchParams()
+  const { id, memberId } = useLocalSearchParams()
   const group_id = typeof id == 'string' ? parseInt(id) : parseInt(id[0])
-  const [addMemberUIStore, _] = useState(new AddMemberUIStore(group_id))
+  const member_id = memberId ? typeof memberId == 'string' ? parseInt(memberId) : parseInt(memberId[0]) : undefined
+  const [addMemberUIStore, _] = useState(new AddMemberUIStore(group_id, member_id))
 
   return (
     <View style={styles.container}>

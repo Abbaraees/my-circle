@@ -1,10 +1,8 @@
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 
 import { View } from '@/components/Themed';
 import { Text } from 'react-native-paper';
 import GroupCard from '@/src/components/GroupCard';
-import ActivityItem from '@/src/components/ActivityItem';
-import FAB from '@/src/components/FAB';
 import { useCallback, useState } from 'react';
 import { Group } from '@/src/types';
 import { router, useFocusEffect } from 'expo-router';
@@ -13,18 +11,20 @@ import groupsStore from '@/src/stores/GroupStore';
 export default function TabOneScreen() {
   const [groups, setGroups] = useState<Group[]>()
 
-  useFocusEffect(() => {(async () => {
+  useFocusEffect(useCallback(() => {(async () => {
     try {
       const data = await groupsStore.getAllGroups()
       setGroups(data)
+     
     } catch (error) {
       
     }
-  })()})
+  })()}, []))
+
   return (
     <View style={styles.container}>
       <Text variant='headlineMedium' style={{fontWeight: 'bold', marginVertical: 8}}>MyCircle</Text>
-      <Text variant='bodyLarge' style={{fontWeight: '600'}}>Hi, Raees! You’ve connected with 3 groups this week. Keep it up!</Text>
+      <Text variant='bodyLarge' style={{fontWeight: '600'}}>Hi, User! Welcome to My Circle.</Text>
       <View style={{ height: 300}}>
         <FlatList 
           data={groups}
